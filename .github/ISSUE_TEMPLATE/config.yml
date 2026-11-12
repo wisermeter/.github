@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Chamado de cliente final"
+    url: "https://desk.seuconsumo.com.br/"
+    about: "Cliente final e parceiros abrem chamado pelo GLPI, não pelo GitHub."
+  - name: "Qual repositório usar"
+    url: "https://github.com/wisermeter/workflows/blob/main/README.md#como-abrir-uma-issue"
+    about: "Veja em qual repositório fica cada sistema antes de abrir a issue."

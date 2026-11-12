@@ -1,0 +1,63 @@
+name: "Nova funcionalidade ou melhoria"
+description: "O cliente quer fazer algo que o sistema ainda não faz, ou fazer melhor o que já faz."
+title: "[Feature] "
+labels:
+  - "type: feature"
+  - "status: needs-refinement"
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: "O que o cliente quer resolver?"
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: "O que ele quer conseguir fazer depois?"
+    validations:
+      required: false
+  - type: textarea
+    id: known_rules
+    attributes:
+      label: "Regras que você já sabe (limites, condições, exceções)"
+    validations:
+      required: false
+  - type: textarea
+    id: done_when
+    attributes:
+      label: "Como o cliente vai saber que ficou pronto?"
+    validations:
+      required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Prioridade"
+      options:
+        - "Baixa"
+        - "Média"
+        - "Alta"
+      default: 1
+    validations:
+      required: false
+  - type: input
+    id: glpi_ticket
+    attributes:
+      label: "Chamado GLPI de origem"
+      description: "Preencha se veio de um chamado do GLPI. Ex.: 2814."
+    validations:
+      required: false
+  - type: input
+    id: identifier
+    attributes:
+      label: "Identificador do cliente ou do registro afetado (código do condomínio, da unidade, do medidor, da fatura, da embarcação ou do equipamento)"
+      description: "Só o código ou número. Não coloque nome, CPF, e-mail, telefone ou endereço."
+    validations:
+      required: false
+  - type: upload
+    id: attachments
+    attributes:
+      label: "Anexos"
+      description: "Antes de anexar prints ou arquivos, recorte ou borre nome, CPF, e-mail, telefone, endereço e dados de terceiros. Depois de publicado, o anexo continua acessível mesmo que você apague."
+    validations:
+      required: false

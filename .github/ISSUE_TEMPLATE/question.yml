@@ -1,0 +1,33 @@
+name: "Dúvida de uso"
+description: "O cliente não sabe como fazer algo no sistema."
+title: "[Question] "
+labels:
+  - "type: question"
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: "Qual é a dúvida do cliente?"
+    validations:
+      required: true
+  - type: input
+    id: glpi_ticket
+    attributes:
+      label: "Chamado GLPI de origem"
+      description: "Preencha se veio de um chamado do GLPI. Ex.: 2814."
+    validations:
+      required: false
+  - type: input
+    id: identifier
+    attributes:
+      label: "Identificador do cliente ou do registro afetado (código do condomínio, da unidade, do medidor, da fatura, da embarcação ou do equipamento)"
+      description: "Só o código ou número. Não coloque nome, CPF, e-mail, telefone ou endereço."
+    validations:
+      required: false
+  - type: upload
+    id: attachments
+    attributes:
+      label: "Anexos"
+      description: "Antes de anexar prints ou arquivos, recorte ou borre nome, CPF, e-mail, telefone, endereço e dados de terceiros. Depois de publicado, o anexo continua acessível mesmo que você apague."
+    validations:
+      required: false

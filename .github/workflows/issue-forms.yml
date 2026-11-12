@@ -1,0 +1,31 @@
+name: Validar templates de issue
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-jsonschema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar check-jsonschema
+        run: pip install "check-jsonschema==0.39.0"
+      - name: Validar formulários com o schema github-issue-forms
+        run: >-
+          check-jsonschema
+          --builtin-schema github-issue-forms
+          .github/ISSUE_TEMPLATE/bug.yml
+          .github/ISSUE_TEMPLATE/feature.yml
+          .github/ISSUE_TEMPLATE/question.yml
+          .github/ISSUE_TEMPLATE/task.yml
+      - name: Validar config.yml com o schema github-issue-config
+        run: >-
+          check-jsonschema
+          --builtin-schema github-issue-config
+          .github/ISSUE_TEMPLATE/config.yml

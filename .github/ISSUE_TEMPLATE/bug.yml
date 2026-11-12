@@ -1,0 +1,85 @@
+name: "Algo não funciona"
+description: "O sistema deu erro ou fez diferente do esperado."
+title: "[Bug] "
+labels:
+  - "type: bug"
+  - "status: needs-triage"
+body:
+  - type: textarea
+    id: customer_action
+    attributes:
+      label: "O que o cliente estava fazendo?"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "O que ele esperava que acontecesse?"
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: "O que aconteceu de fato?"
+    validations:
+      required: true
+  - type: textarea
+    id: occurred_at
+    attributes:
+      label: "Quando aconteceu?"
+      description: "Data e hora aproximadas. Se o cliente não souber, escreva 'não sei'."
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: "Acontece sempre ou foi uma vez?"
+      options:
+        - "Sempre"
+        - "Às vezes"
+        - "Uma vez"
+        - "Não sei"
+    validations:
+      required: false
+  - type: dropdown
+    id: device
+    attributes:
+      label: "Onde: celular, computador ou tablet?"
+      options:
+        - "Celular"
+        - "Computador"
+        - "Tablet"
+        - "Não sei"
+    validations:
+      required: false
+  - type: dropdown
+    id: impact
+    attributes:
+      label: "Impacto"
+      options:
+        - "Não consigo trabalhar"
+        - "Consigo, mas com dificuldade"
+        - "Pequeno incômodo"
+    validations:
+      required: true
+  - type: input
+    id: glpi_ticket
+    attributes:
+      label: "Chamado GLPI de origem"
+      description: "Preencha se veio de um chamado do GLPI. Ex.: 2814."
+    validations:
+      required: false
+  - type: input
+    id: identifier
+    attributes:
+      label: "Identificador do cliente ou do registro afetado (código do condomínio, da unidade, do medidor, da fatura, da embarcação ou do equipamento)"
+      description: "Só o código ou número. Não coloque nome, CPF, e-mail, telefone ou endereço."
+    validations:
+      required: false
+  - type: upload
+    id: attachments
+    attributes:
+      label: "Anexos"
+      description: "Antes de anexar prints ou arquivos, recorte ou borre nome, CPF, e-mail, telefone, endereço e dados de terceiros. Depois de publicado, o anexo continua acessível mesmo que você apague."
+    validations:
+      required: false
