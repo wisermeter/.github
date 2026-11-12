@@ -1,0 +1,45 @@
+name: "Tarefa (carga de dados, configuração)"
+description: "Algo a ser feito uma vez, sem regra nova. Ex.: importar uma planilha."
+title: "[Task] "
+labels:
+  - "type: task"
+body:
+  - type: textarea
+    id: work
+    attributes:
+      label: "O que precisa ser feito?"
+    validations:
+      required: true
+  - type: textarea
+    id: due
+    attributes:
+      label: "Prazo desejado"
+    validations:
+      required: false
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: "O que o cliente espera ver no final?"
+    validations:
+      required: true
+  - type: input
+    id: glpi_ticket
+    attributes:
+      label: "Chamado GLPI de origem"
+      description: "Preencha se veio de um chamado do GLPI. Ex.: 2814."
+    validations:
+      required: false
+  - type: input
+    id: identifier
+    attributes:
+      label: "Identificador do cliente ou do registro afetado (código do condomínio, da unidade, do medidor, da fatura, da embarcação ou do equipamento)"
+      description: "Só o código ou número. Não coloque nome, CPF, e-mail, telefone ou endereço."
+    validations:
+      required: false
+  - type: upload
+    id: attachments
+    attributes:
+      label: "Anexos"
+      description: "Antes de anexar prints ou arquivos, recorte ou borre nome, CPF, e-mail, telefone, endereço e dados de terceiros. Depois de publicado, o anexo continua acessível mesmo que você apague."
+    validations:
+      required: false
