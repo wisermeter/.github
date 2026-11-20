@@ -14,7 +14,7 @@ TEMPLATE_DIR = ROOT / ".github" / "ISSUE_TEMPLATE"
 ISSUES_PATH = ROOT / "ISSUES.md"
 
 # Ordem do seletor: nome de arquivo, alfanumérico; YAML antes de Markdown.
-FORMS = ("bug.yml", "feature.yml", "question.yml", "task.yml")
+FORMS = ("bug.yml", "feature.yml", "question.yml", "task.yml", "tecnica.yml")
 SEP = " — "
 ITEM_RE = re.compile(
     r"^(\d+)\. \*\*(.+)\*\*"
