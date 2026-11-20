@@ -1,0 +1,80 @@
+name: "Tarefa técnica (agente de código)"
+description: "Trabalho de código com escopo fechado, para um agente implementar. Uma issue = um PR."
+title: "[Dev] "
+labels:
+  - "type: dev-task"
+  - "status: needs-approval"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Uso interno da equipe técnica. Chamado de cliente final vai para o GLPI.
+        O agente só mexe nos arquivos de "Arquivos permitidos" e para quando algo estiver ambíguo.
+        Só vira trabalho depois que a aprovação técnica troca `status: needs-approval` por `status: ready`.
+        Não coloque dado pessoal nem credencial. Regras do agente: `AGENTS.md` do repositório.
+  - type: input
+    id: owner
+    attributes:
+      label: "Agente responsável"
+      description: "Quem acompanha esta issue, como indicado no AGENTS.md deste repositório."
+      placeholder: "Ex.: o agente indicado no AGENTS.md"
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: "Objetivo"
+      description: "O que muda e por quê, em 1 a 3 frases."
+      placeholder: "Ex.: o relatório mensal passa a mostrar o total por unidade, porque hoje só mostra o total do condomínio."
+    validations:
+      required: true
+  - type: textarea
+    id: allowed_files
+    attributes:
+      label: "Arquivos permitidos"
+      description: "Um caminho ou padrão por linha. O agente não mexe em nada fora desta lista."
+      placeholder: |
+        backend/reportapp/views.py
+        backend/reportapp/tests/test_monthly.py
+        frontend/src/app/report/**
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: "Critérios de aceite"
+      description: "Checklist verificável. Cada item vira teste ou evidência no PR."
+      placeholder: |
+        - [ ] Dado ..., quando ..., então ...
+        - [ ] Teste automatizado cobre o caso de erro
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: "Fora de escopo"
+      description: "O que o agente não deve fazer nesta issue. Se não houver nada, escreva 'nada além do padrão do AGENTS.md'."
+      placeholder: "Ex.: não mudar o layout do PDF; não criar migration."
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: "Como validar"
+      description: "Comandos ou passos extras além dos do AGENTS.md (opcional)."
+    validations:
+      required: false
+  - type: input
+    id: origin
+    attributes:
+      label: "Issue ou PR de origem"
+      description: "Link da issue de cliente ou do PR que originou esta tarefa (opcional)."
+    validations:
+      required: false
+  - type: input
+    id: glpi_ticket
+    attributes:
+      label: "Chamado GLPI de origem"
+      description: "Preencha se veio de um chamado do GLPI. Ex.: 2814."
+    validations:
+      required: false

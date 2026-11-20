@@ -4,7 +4,7 @@ Este arquivo é a fonte única da regra para quem cria issue sem o formulário d
 
 Quando possível, o formulário do GitHub é o caminho preferido. Ele aplica o título, as labels e o corpo no formato abaixo. Use este padrão quando a issue for criada fora do formulário.
 
-Os quatro tipos seguem a ordem do seletor. O GitHub lista os arquivos de `.github/ISSUE_TEMPLATE/` em ordem alfanumérica: `bug.yml`, `feature.yml`, `question.yml`, `task.yml`. No `config.yml`, `blank_issues_enabled` está `false`: o caminho da interface é um desses formulários.
+Os cinco tipos seguem a ordem do seletor. O GitHub lista os arquivos de `.github/ISSUE_TEMPLATE/` em ordem alfanumérica: `bug.yml`, `feature.yml`, `question.yml`, `task.yml`, `tecnica.yml`. Os quatro primeiros são pedidos de cliente; `tecnica.yml` é trabalho de código da equipe técnica, para um agente implementar. No `config.yml`, `blank_issues_enabled` está `false`: o caminho da interface é um desses formulários.
 
 ## Como escolher o repositório
 
@@ -272,8 +272,77 @@ EQ-440
 _No response_
 ```
 
+## Tarefa técnica (agente de código)
+
+Formulário: [`.github/ISSUE_TEMPLATE/tecnica.yml`](.github/ISSUE_TEMPLATE/tecnica.yml). No seletor: Trabalho de código com escopo fechado, para um agente implementar. Uma issue = um PR.
+
+**Título padrão:** `[Dev] ` (o prefixo inclui o espaço final)
+
+**Labels:** `type: dev-task`, `status: needs-approval`
+
+Aplique estas labels na issue. A issue só vira trabalho quando a aprovação técnica troca `status: needs-approval` por `status: ready`.
+
+Formato do corpo: cada seção da lista entra na issue, na mesma ordem, como um cabeçalho `### Título do campo` seguido do conteúdo. O título do cabeçalho é o texto da seção, idêntico. É o formato que o GitHub gera a partir do formulário. Seção opcional sem conteúdo leva `_No response_` (formato aceito). Dropdown opcional sem escolha leva `None`.
+
+1. **Agente responsável** — obrigatória
+   Quem acompanha esta issue, como indicado no AGENTS.md deste repositório.
+2. **Objetivo** — obrigatória
+   O que muda e por quê, em 1 a 3 frases.
+3. **Arquivos permitidos** — obrigatória
+   Um caminho ou padrão por linha. O agente não mexe em nada fora desta lista.
+4. **Critérios de aceite** — obrigatória
+   Checklist verificável. Cada item vira teste ou evidência no PR.
+5. **Fora de escopo** — obrigatória
+   O que o agente não deve fazer nesta issue. Se não houver nada, escreva 'nada além do padrão do AGENTS.md'.
+6. **Como validar** — opcional
+   Comandos ou passos extras além dos do AGENTS.md (opcional).
+7. **Issue ou PR de origem** — opcional
+   Link da issue de cliente ou do PR que originou esta tarefa (opcional).
+8. **Chamado GLPI de origem** — opcional
+
+Título da issue: `[Dev] Total por unidade no relatório mensal`
+
+Exemplo de corpo completo, com dados fictícios:
+
+```markdown
+### Agente responsável
+
+Agente indicado no AGENTS.md do repositório
+
+### Objetivo
+
+O relatório mensal passa a mostrar o total por unidade, porque hoje só mostra o total do condomínio.
+
+### Arquivos permitidos
+
+backend/reportapp/views.py
+backend/reportapp/tests/test_monthly.py
+
+### Critérios de aceite
+
+- [ ] Dado o condomínio COND-1042 com 3 unidades, quando o relatório de março de 2026 é gerado, então aparece uma linha por unidade
+- [ ] A soma das linhas fecha com o total do condomínio
+- [ ] Teste automatizado cobre condomínio sem leitura no mês
+
+### Fora de escopo
+
+Não mudar o layout do PDF; não criar migration.
+
+### Como validar
+
+_No response_
+
+### Issue ou PR de origem
+
+_No response_
+
+### Chamado GLPI de origem
+
+_No response_
+```
+
 ## Manutenção
 
-Se um formulário em `.github/ISSUE_TEMPLATE/` mudar (`bug.yml`, `feature.yml`, `question.yml`, `task.yml`), este arquivo muda no mesmo pull request. O mesmo vale para `config.yml`, de onde saem o link do GLPI e o link de escolha de repositório.
+Se um formulário em `.github/ISSUE_TEMPLATE/` mudar (`bug.yml`, `feature.yml`, `question.yml`, `task.yml`, `tecnica.yml`), este arquivo muda no mesmo pull request. O mesmo vale para `config.yml`, de onde saem o link do GLPI e o link de escolha de repositório.
 
 Título padrão, labels, títulos de seção, obrigatoriedade e opções de dropdown daqui acompanham o YAML. O workflow `.github/workflows/issue-forms.yml` roda `scripts/check_issues_md.py`, que confere título de seção, label, obrigatoriedade e opções de dropdown com o YAML.

@@ -24,6 +24,7 @@ jobs:
           .github/ISSUE_TEMPLATE/feature.yml
           .github/ISSUE_TEMPLATE/question.yml
           .github/ISSUE_TEMPLATE/task.yml
+          .github/ISSUE_TEMPLATE/tecnica.yml
       - name: Validar config.yml com o schema github-issue-config
         run: >-
           check-jsonschema
