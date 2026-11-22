@@ -294,11 +294,13 @@ Formato do corpo: cada seção da lista entra na issue, na mesma ordem, como um 
    Checklist verificável. Cada item vira teste ou evidência no PR.
 5. **Fora de escopo** — obrigatória
    O que o agente não deve fazer nesta issue. Se não houver nada, escreva 'nada além do padrão do AGENTS.md'.
-6. **Como validar** — opcional
-   Comandos ou passos extras além dos do AGENTS.md (opcional).
-7. **Issue ou PR de origem** — opcional
+6. **Pronto quando** — obrigatória
+   Comando, teste automatizado ou roteiro que o agente roda e cola no PR, com resultado que passa ou falha. 'Funcionar bem' ou 'ficar igual ao antigo' não valem.
+7. **Raio de impacto** — obrigatória
+   O que mais pode ser afetado fora dos arquivos permitidos (módulos, jobs, integrações, dados) e, quando houver valores, os valores literais em R$ ou US$.
+8. **Issue ou PR de origem** — opcional
    Link da issue de cliente ou do PR que originou esta tarefa (opcional).
-8. **Chamado GLPI de origem** — opcional
+9. **Chamado GLPI de origem** — opcional
 
 Título da issue: `[Dev] Total por unidade no relatório mensal`
 
@@ -328,9 +330,13 @@ backend/reportapp/tests/test_monthly.py
 
 Não mudar o layout do PDF; não criar migration.
 
-### Como validar
+### Pronto quando
 
-_No response_
+`cd backend && python manage.py test reportapp.tests.test_monthly` passa, e o relatório de março de 2026 do condomínio COND-1042 tem 3 linhas cuja soma é igual ao total do condomínio.
+
+### Raio de impacto
+
+O job mensal que gera as faturas lê o total do condomínio, que não muda; a exportação em planilha usa a mesma consulta. Valores do exemplo: unidades com R$ 105,00, R$ 84,00 e R$ 63,00 somam R$ 252,00, igual ao total.
 
 ### Issue ou PR de origem
 
