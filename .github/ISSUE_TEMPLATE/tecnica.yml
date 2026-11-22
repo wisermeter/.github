@@ -58,12 +58,24 @@ body:
     validations:
       required: true
   - type: textarea
-    id: validation
+    id: done_when
     attributes:
-      label: "Como validar"
-      description: "Comandos ou passos extras além dos do AGENTS.md (opcional)."
+      label: "Pronto quando"
+      description: "Comando, teste automatizado ou roteiro que o agente roda e cola no PR, com resultado que passa ou falha. 'Funcionar bem' ou 'ficar igual ao antigo' não valem."
+      placeholder: |
+        Ex.: `cd backend && python manage.py test reportapp.tests.test_monthly` passa, e o caso sem leitura no mês mostra total 0,00 na unidade.
     validations:
-      required: false
+      required: true
+  - type: textarea
+    id: impact_radius
+    attributes:
+      label: "Raio de impacto"
+      description: "O que mais pode ser afetado fora dos arquivos permitidos (módulos, jobs, integrações, dados) e, quando houver valores, os valores literais em R$ ou US$."
+      placeholder: |
+        Ex.: o job mensal que gera as faturas lê este total; a exportação em planilha usa a mesma consulta.
+        Valores: unidade com 12,5 m³ a R$ 8,40/m³ continua com R$ 105,00.
+    validations:
+      required: true
   - type: input
     id: origin
     attributes:
